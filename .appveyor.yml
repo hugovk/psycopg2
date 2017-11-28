@@ -197,8 +197,8 @@ install:
 
     # Download PostgreSQL source
     - CD C:\Others
-    - IF NOT EXIST postgres-REL_10_0.zip (
-        curl -fsSL -o postgres-REL_10_0.zip https://github.com/postgres/postgres/archive/REL_10_0.zip
+    - IF NOT EXIST postgres-REL_10_1.zip (
+        curl -fsSL -o postgres-REL_10_1.zip https://github.com/postgres/postgres/archive/REL_10_1.zip
       )
 
     # Setup build config file (config.pl)
@@ -209,11 +209,11 @@ install:
     # Prepare local include directory for building from
     # Build pg_config in place
     # NOTE: Cannot set and use the same variable inside an IF
-    - SET PGBUILD=%BUILD_DIR%\postgres-REL_10_0
+    - SET PGBUILD=%BUILD_DIR%\postgres-REL_10_1
     - IF NOT EXIST %PGTOP%\lib\libpq.lib (
         CD %BUILD_DIR% &&
-        7z x C:\Others\postgres-REL_10_0.zip &&
-        CD postgres-REL_10_0\src\tools\msvc &&
+        7z x C:\Others\postgres-REL_10_1.zip &&
+        CD postgres-REL_10_1\src\tools\msvc &&
         ECHO $config-^>{ldap} = 0; > config.pl &&
         ECHO $config-^>{openssl} = "%OPENSSLTOP:\=\\%"; >> config.pl &&
         ECHO.>> config.pl &&
